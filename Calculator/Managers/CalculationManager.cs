@@ -71,7 +71,7 @@ namespace Calculator.Managers
             this.operation = operation;
             OnDisplayStateUpdate?.Invoke(DisplayStateEnum.SwitchOperands);
 
-            if (savedOne)
+            if (savedOne && !operandTwo.Equals(string.Empty))
                 return Calculate();
             else
             {
