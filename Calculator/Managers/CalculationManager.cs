@@ -8,26 +8,51 @@ using System.Windows;
 
 namespace Calculator.Managers
 {
+    /// <summary>
+    /// Manager that handles the backend of calculation.
+    /// </summary>
     public class CalculationManager
     {
+        #region Constants
+        /// <summary>
+        /// Constant value for zero, to return for resetting the display.
+        /// </summary>
         private const string ZERO = "0";
+        #endregion
 
+        #region Calculation Strings
+        /// <summary>
+        /// String that represents the first operand of the equation.
+        /// </summary>
         private string operandOne = string.Empty;
 
+        /// <summary>
+        /// String that represents the second operand of the equation.
+        /// </summary>
         private string operandTwo = string.Empty;
 
+        /// <summary>
+        /// String that represents the selected operation.
+        /// </summary>
         private string operation = string.Empty;
+        #endregion
 
+        /// <summary>
+        /// Bool that represents whether or not we've switched operands.
+        /// </summary>
         private bool savedOne = false;
 
-        private List<string> displayValues = new() { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "." };
-
-        private List<string> operations = new() { "+", "-", "*", "/" };
-
+        /// <summary>
+        /// Event called when the display state needs to be updated.
+        /// </summary>
         public event Action<DisplayStateEnum>? OnDisplayStateUpdate;
 
         public CalculationManager() { }
 
+        /// <summary>
+        /// Method that updates the value of the selected operand.
+        /// </summary>
+        /// <param name="value">The value to add.</param>
         public void UpdateValue(string value)
         {
             if (!savedOne)
@@ -36,6 +61,11 @@ namespace Calculator.Managers
                 operandTwo += value;
         }
 
+        /// <summary>
+        /// Method that updates the selected operation.
+        /// </summary>
+        /// <param name="operation">The operation being selected.</param>
+        /// <returns>The new operand to display, either the current one or the calculated result.</returns>
         public string UpdateOperation(string operation)
         {
             this.operation = operation;
@@ -50,6 +80,10 @@ namespace Calculator.Managers
             }
         }
 
+        /// <summary>
+        /// Method to handle calculation.
+        /// </summary>
+        /// <returns>The end result as a string.</returns>
         public string Calculate()
         {
             if (operandTwo.Equals(string.Empty) || operation.Equals(string.Empty))
@@ -87,7 +121,10 @@ namespace Calculator.Managers
             return ZERO;
         }
 
-
+        /// <summary>
+        /// Method to clear the display and saved memory of the current operand.
+        /// </summary>
+        /// <returns>Value to update the display to.</returns>
         public string Clear()
         {
             if (!savedOne)
@@ -100,6 +137,10 @@ namespace Calculator.Managers
             return ZERO;
         }
 
+        /// <summary>
+        /// Method to clear all saved information, including the operation and not currently displayed operand.
+        /// </summary>
+        /// <returns>Value to update the display to.</returns>
         public string AllClear()
         {
             operandOne = string.Empty;
