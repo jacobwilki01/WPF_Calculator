@@ -20,10 +20,6 @@ namespace Calculator.Managers
 
         private bool savedOne = false;
 
-        private List<string> displayValues = new() { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "." };
-
-        private List<string> operations = new() { "+", "-", "*", "/" };
-
         public event Action<DisplayStateEnum>? OnDisplayStateUpdate;
 
         public CalculationManager() { }
