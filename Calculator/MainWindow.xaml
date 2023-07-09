@@ -14,7 +14,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <views:DisplayView x:Name="Display" Grid.Row="0"/>
-        <views:ControlsView x:Name="Controls" Grid.Row="1" Grid.RowSpan="2"/>
+        <views:DisplayView x:Name="Display" Grid.Row="0" DataContext="{Binding display}"/>
+        <views:ControlsView x:Name="Controls" Grid.Row="1" Grid.RowSpan="2" DataContext="{Binding controls}"/>
     </Grid>
 </Window>

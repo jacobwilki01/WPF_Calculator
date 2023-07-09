@@ -29,8 +29,6 @@ namespace Calculator
         {
             DataContext = viewModel;
             InitializeComponent();
-            Display.DataContext = viewModel.display;
-            Controls.DataContext = viewModel.controls;
         }
     }
 }

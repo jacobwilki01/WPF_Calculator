@@ -13,10 +13,19 @@ namespace Calculator.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
-        public ControlsViewModel controls = new();
+        /// <summary>
+        /// The controls.
+        /// </summary>
+        public ControlsViewModel controls { get; set; } = new();
 
-        public DisplayViewModel display = new();
+        /// <summary>
+        /// The display.
+        /// </summary>
+        public DisplayViewModel display { get; set; } = new();
 
+        /// <summary>
+        /// The calculation manager.
+        /// </summary>
         public CalculationManager calculator = new();
 
         public MainViewModel()
@@ -31,21 +40,34 @@ namespace Calculator.ViewModels
             calculator.OnDisplayStateUpdate += display.UpdateState;
         }
 
+        /// <summary>
+        /// Handler for updating the operands based on an operation switch.
+        /// </summary>
+        /// <param name="operation">The operation selected.</param>
         private void UpdateOperands(string operation)
         {
             display.Update(calculator.UpdateOperation(operation));
         }
 
+        /// <summary>
+        /// Handler for calling the calculation manager's calculate method and updating the display.
+        /// </summary>
         private void Calculate()
         {
             display.Update(calculator.Calculate());
         }
 
+        /// <summary>
+        /// Handler for clearing the calculator and the display.
+        /// </summary>
         private void Clear()
         {
             display.Update(calculator.Clear());
         }
 
+        /// <summary>
+        /// Handler for clearing the calculator's memory and the display.
+        /// </summary>
         private void AllClear()
         {
             display.Update(calculator.AllClear());
